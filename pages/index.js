@@ -12,13 +12,15 @@ class Index extends Component {
   }
 
   renderPosts = () => {
-    return this.props.posts.map((post) => {
+    return this.props.posts.map((post, index) => {
       return (
-        <a href={`/posts/${post.slug}`}>
-          <div style={{ fontSize: 16, fontWeight: "bold" }}>{post.title}</div>
-          <div style={{ fontSize: 16 }}>{post.date}</div>
-          <img src={post.image} style={{ width: 300 }} />
-        </a>
+        <div style={{ marginTop: index == 0 ? 0 : 20 }} key={index}>
+          <a href={`/posts/${post.slug}`}>
+            <div style={{ fontSize: 16, fontWeight: "bold" }}>{post.title}</div>
+            <div style={{ fontSize: 16 }}>{post.date}</div>
+            <img src={post.image} style={{ width: 300 }} />
+          </a>
+        </div>
       );
     });
   };
@@ -56,7 +58,7 @@ class Index extends Component {
           <div
             style={{ width: "80%", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ marginTop: 20 }}>{this.renderPosts()}</div>
+            <div>{this.renderPosts()}</div>
           </div>
         </div>
       </div>
